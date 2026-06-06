@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Rubik:wght@900&display=swap" rel="stylesheet">
+  <style>
+    :root { --pop-yellow: #FFDE03; --pop-blue: #0336FF; --pop-red: #FF0266; }
+    body { background: var(--pop-yellow); color: #000; font-family: 'Rubik', sans-serif; overflow-x: hidden; margin: 0; }
+    .bungee { font-family: 'Bungee', cursive; }
+    
+    .dots-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background-image: radial-gradient(rgba(0,0,0,0.15) 2px, transparent 2px);
+      background-size: 20px 20px;
+    }
+    
+    .hero-container {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 40px; text-align: center; background: white;
+      border: 15px solid #000; transform: rotate(-1deg); margin: 40px; box-shadow: 30px 30px 0px var(--pop-blue);
+    }
+    
+  .flag-burst{
+  position:absolute;
+  width:220px;
+  height:150px;
+  transform: rotate(-12deg);
+  z-index:-1;
+  animation: floatFlag 5s ease-in-out infinite;
+}
+.flag-inner{
+  width:100%;
+  height:100%;
+  border:10px solid #000;
+  box-shadow: 14px 14px 0 var(--pop-blue);
+  overflow:hidden;
+  border-radius:18px;
+  background:#fff;
+}
+.flag-inner span{
+  display:block;
+  height:33.333%;
+}
+.flag-white{ background:#fff; }
+.flag-blue{ background:#0039A6; }
+.flag-red{ background:#D52B1E; }
+
+@keyframes floatFlag{
+  0%,100% { transform: rotate(-12deg) translateY(0); }
+  50% { transform: rotate(-9deg) translateY(-10px); }
+}
+    @keyframes spin { from { transform: rotate(0deg) scale(1); } to { transform: rotate(360deg) scale(1.2); } }
+
+    .sticky-note {
+      background: #fff; border: 4px solid #000; padding: 30px; border-radius: 4px;
+      box-shadow: 10px 10px 0 #000; transform: rotate(2deg); transition: 0.3s;
+    }
+    .sticky-note:hover { transform: rotate(-1deg) scale(1.05); }
+    
+    .giant-text { font-size: clamp(4rem, 18vw, 15rem); line-height: 0.75; letter-spacing: -0.05em; color: var(--pop-blue); }
+.desk-wrapper{
+  position:relative;
+  margin-top: 5rem;
+}
+
+.desk-label{
+  display:inline-block;
+  background:#000;
+  color:#fff;
+  padding:1rem 1.5rem;
+  font-size:2rem;
+  transform:rotate(-3deg);
+  margin-bottom:1.5rem;
+  box-shadow:10px 10px 0 var(--pop-red);
+}
+
+.desk-board{
+  position:relative;
+  padding:3rem;
+  border:12px solid #000;
+  border-radius:30px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(0,0,0,0.08)),
+    repeating-linear-gradient(
+      90deg,
+      #c7864d 0px,
+      #c7864d 70px,
+      #b8743d 70px,
+      #b8743d 74px
+    );
+  box-shadow:22px 22px 0 var(--pop-blue);
+  display:grid;
+  grid-template-columns:repeat(1, minmax(0,1fr));
+  gap:1.5rem;
+}
+
+@media (min-width: 768px){
+  .desk-board{
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:2rem;
+  }
+}
+
+@media (min-width: 1200px){
+  .desk-board{
+    grid-template-columns:repeat(3, minmax(0,1fr));
+  }
+}
+
+.desk-card{
+  position:relative;
+  min-height:250px;
+  padding:2rem 1.5rem 1.5rem;
+  border:5px solid #000;
+  box-shadow:10px 10px 0 #000;
+  transition:transform .2s ease, box-shadow .2s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.desk-card:hover{
+  transform:translateY(-8px) rotate(-1deg);
+  box-shadow:14px 14px 0 #000;
+}
+
+.desk-card h3{
+  font-size:2rem;
+  font-weight:900;
+  margin-bottom:1rem;
+}
+
+.desk-card p{
+  font-size:1.1rem;
+  line-height:1.5;
+  margin-bottom:1.5rem;
+  max-width:28ch;
+}
+
+.desk-card a{
+  align-self:flex-start;
+  background:#000;
+  color:#fff;
+  text-transform:uppercase;
+  font-size:.9rem;
+  padding:.8rem 1rem;
+  text-decoration:none;
+}
+
+.card-pin{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:20px;
+  height:20px;
+  background:var(--pop-red);
+  border:3px solid #000;
+  border-radius:999px;
+}
+
+.card-grammar{ background:#fffdf5; transform:rotate(-2deg); }
+.card-alphabet{ background:#0336FF; color:#fff; transform:rotate(1.5deg); }
+.card-exercises{ background:#FFDE03; transform:rotate(-1deg); }
+.card-books{ background:#ffffff; transform:rotate(2deg); }
+.card-listening{ background:#FF0266; color:#fff; transform:rotate(-2.5deg); }
+.card-verbs{ background:#111; color:#fff; transform:rotate(1deg); }
+
+.card-alphabet a,
+.card-listening a,
+.card-verbs a{
+  background:#fff;
+  color:#000;
+}
+
+.desk-cta{
+  background:#000;
+  color:#fff;
+  padding:5rem 2rem;
+  text-align:center;
+  border:14px solid #fff;
+  border-radius:60px;
+  box-shadow:20px 20px 0 var(--pop-red);
+}
+
+.desk-cta-btn{
+  background:#FFDE03;
+  color:#000;
+  font-size:2rem;
+  font-family:'Bungee', cursive;
+  padding:1.25rem 2.5rem;
+  border-radius:999px;
+  border:6px solid #000;
+  transition:transform .2s ease;
+}
+
+.desk-cta-btn:hover{
+  transform:scale(1.08);
+}
+  </style>
+</head>
+<body class="p-4 sm:p-10">
+  <div class="dots-bg"></div>
+
+  <nav class="flex justify-between items-center mb-20 px-8">
+    <div class="bungee text-5xl bg-black text-white px-6 py-2 skew-x-[-10deg]">ПРИВЕТ!</div>
+    <div class="flex gap-8 font-black text-xs uppercase tracking-tighter">
+      <a href="#" class="bg-black text-white px-4 py-2 hover:bg-[#FF0266]">Corsi</a>
+      <a href="#" class="bg-black text-white px-4 py-2 hover:bg-[#0336FF]">Laboratori</a>
+    </div>
+  </nav>
+
+  <main class="max-w-[1500px] mx-auto">
+    <div class="relative mb-40">
+      <div class="flag-burst top-[-40px] left-[-20px]" aria-hidden="true">
+  <div class="flag-inner">
+    <span class="flag-white"></span>
+    <span class="flag-blue"></span>
+    <span class="flag-red"></span>
+  </div>
+</div>
+       <h1 class="giant-text bungee">LINGUA<br>🪆<span class="text-black">RUSSA</span></h1>
+       <div class="absolute bottom-[-40px] right-20 bg-[#FF0266] text-white p-6 bungee text-4xl rotate-6 shadow-2xl">Русский язык</div>
+    </div>
+
+  <section class="desk-wrapper mb-40">
+  <div class="desk-label bungee">SCRIVANIA DI STUDIO</div>
+
+  <div class="desk-board">
+    <article class="desk-card card-grammar">
+      <div class="card-pin"></div>
+      <h3>Grammatica_</h3>
+      <p>Tempi, casi, struttura delle frasi e regole spiegate in modo visivo.</p>
+      <a href="#">Apri schede</a>
+    </article>
+
+    <article class="desk-card card-alphabet">
+      <div class="card-pin"></div>
+      <h3>Alfabeto_</h3>
+      <p>Cirillico, pronuncia, lettere simili e prime letture guidate.</p>
+      <a href="#">Inizia qui</a>
+    </article>
+
+    <article class="desk-card card-exercises">
+      <div class="card-pin"></div>
+      <h3>Esercizi_</h3>
+      <p>Quiz rapidi, completamento, trascinamento e mini test giornalieri.</p>
+      <a href="#">Allenati</a>
+    </article>
+
+    <article class="desk-card card-books">
+      <div class="card-pin"></div>
+      <h3>Libri_</h3>
+      <p>Dialoghi, racconti graduati e materiali da leggere senza stress.</p>
+      <a href="#">Sfoglia</a>
+    </article>
+
+    <article class="desk-card card-listening">
+      <div class="card-pin"></div>
+      <h3>Ascolto_</h3>
+      <p>Audio lenti, parole ad alta frequenza e comprensione guidata.</p>
+      <a href="#">Ascolta</a>
+    </article>
+
+    <article class="desk-card card-verbs">
+      <div class="card-pin"></div>
+      <h3>Verbi_</h3>
+      <p>Aspetto, coniugazioni, coppie verbali e pattern più usati.</p>
+      <a href="#">Studia</a>
+    </article>
+  </div>
+</section>
+
+<section class="desk-cta mb-40">
+  <h2 class="giant-text bungee text-white mb-8">Поехали?</h2>
+  <p class="text-3xl max-w-2xl mx-auto mb-10 italic">
+    Scegli una card dalla scrivania e costruisci il tuo percorso un pezzo alla volta.
+  </p>
+
+</section>
+</body>
+</html>
