@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇷🇺 Изучай русский - Impara il Russo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .cyrillic-font {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #dc2626 0%, #ffffff 50%, #2563eb 100%);
+        }
+        
+        .russian-bg {
+            background: linear-gradient(135deg, #dc2626 0%, #ffffff 25%, #2563eb 50%, #ffffff 75%, #dc2626 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .bounce-in {
+            animation: bounceIn 0.6s ease-out;
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+        
+        .golden-text {
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+        
+        .header-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: #ffffff;
+        }
+        
+        .russian-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 2px, transparent 2px),
+                              radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+        
+        .pronunciation-badge {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #f59e0b;
+        }
+        
+        .unlocked-badge {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 1px solid #3b82f6;
+            color: #1e40af;
+        }
+        
+        .cyrillic-display {
+            font-size: 4rem;
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .snow-animation {
+            animation: snow 8s linear infinite;
+        }
+        
+        @keyframes snow {
+            0% { transform: translateY(-100vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        
+        .matryoshka-colors {
+            background: linear-gradient(135deg, #dc2626, #f59e0b, #10b981, #3b82f6, #8b5cf6);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-red-50 via-white to-blue-50 min-h-screen">
+    <div id="app" class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="gradient-bg text-white rounded-3xl p-8 mb-8 relative overflow-hidden russian-pattern">
+                <div class="absolute top-4 right-4 text-4xl floating-element golden-text">🏛️</div>
+                <div class="absolute bottom-4 left-4 text-3xl floating-element golden-text" style="animation-delay: -2s;">❄️</div>
+                <div class="absolute top-4 left-4 text-2xl floating-element golden-text" style="animation-delay: -1s;">⭐</div>
+                <div class="absolute bottom-4 right-4 text-2xl floating-element golden-text" style="animation-delay: -3s;">🪆</div>
+                <h1 class="text-5xl font-bold mb-4 header-title cyrillic-font">🇷🇺 Изучай русский</h1>
+                <p class="text-xl opacity-95 header-title font-medium">Impara il Russo</p>
+                <p class="text-base opacity-85 mt-3 header-title cyrillic-font">Добро пожаловать!</p>
+                <p class="text-sm opacity-75 mt-1 header-title">(Dobro pozhalovat'! - Benvenuto!)</p>
+                <div class="unlocked-badge rounded-full px-4 py-2 mt-4 inline-block">
+                    <span class="font-bold">Русский язык</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="flex justify-center mb-8">
+            <div class="bg-white rounded-full p-2 shadow-lg">
+                <button onclick="showSection('home')" class="nav-btn px-6 py-3 rounded-full font-medium transition-all duration-300 bg-red-600 text-white">
+                    🏠 Дом (Home)
+                </button>
+                <button onclick="showSection('lessons')" class="nav-btn px-6 py-3 rounded-full font-medium transition-all duration-300 text-gray-600 hover:bg-red-100">
+                    📚 Уроки (Lezioni)
+                </button>
+                <button onclick="showSection('exercises')" class="nav-btn px-6 py-3 rounded-full font-medium transition-all duration-300 text-gray-600 hover:bg-red-100">
+                    🎯 Упражнения (Esercizi)
+                </button>
+                <button onclick="showSection('progress')" class="nav-btn px-6 py-3 rounded-full font-medium transition-all duration-300 text-gray-600 hover:bg-red-100">
+                    📊 Прогресс (Progressi)
+                </button>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <div id="home-section" class="section">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Quick Start Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg card-hover">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 cyrillic-font">Начать изучение</h3>
+                    <p class="text-sm text-gray-500 mb-2">(Inizia a Studiare)</p>
+                    <p class="text-gray-600 mb-4">Impara l'alfabeto cirillico e la pronuncia</p>
+                    <button onclick="startLesson(1)" class="bg-gradient-to-r from-red-600 to-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:shadow-lg transition-all">
+                        Начать (Inizia)
+                    </button>
+                </div>
+
+                <!-- Progress Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg card-hover">
+                    <div class="text-4xl mb-4">📈</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 cyrillic-font">Прогресс обучения</h3>
+                    <p class="text-sm text-gray-500 mb-2">(Progresso di Studio)</p>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-gray-600 mb-1">
+                            <span>Завершено (Completato)</span>
+                            <span id="progress-percent">100%</span>
+                        </div>
+                        <div class="bg-gray-200 rounded-full h-2">
+                            <div id="progress-bar" class="bg-gradient-to-r from-red-500 to-blue-500 h-2 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">Все уроки доступны!</p>
+                    <p class="text-xs text-gray-500">(Tutte le lezioni disponibili!)</p>
+                </div>
+
+                <!-- Daily Goal Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg card-hover">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 cyrillic-font">Ежедневная цель</h3>
+                    <p class="text-sm text-gray-500 mb-2">(Obiettivo Giornaliero)</p>
+                    <p class="text-gray-600 mb-4 cyrillic-font">30 минут изучения</p>
+                    <p class="text-xs text-gray-500 mb-4">(30 minuti di studio)</p>
+                    <div class="flex items-center">
+                        <div class="bg-blue-400 rounded-full w-8 h-8 flex items-center justify-center text-white font-bold mr-2">∞</div>
+                        <span class="text-sm text-gray-600">Безлимитный доступ! 🔥</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Lessons -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800 cyrillic-font">Рекомендуемые уроки</h2>
+                <p class="text-sm text-gray-500 mb-6">(Lezioni Consigliate)</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="border-2 border-red-200 rounded-xl p-6 hover:border-red-400 transition-all cursor-pointer" onclick="startLesson(1)">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-100 rounded-full p-3 mr-4">
+                                <span class="text-2xl cyrillic-font">А Б В</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg cyrillic-font">Русский алфавит</h3>
+                                <p class="text-sm text-red-600 mb-1">(L'Alfabeto Russo)</p>
+                                <p class="text-gray-600 text-sm">Изучите 33 русские буквы</p>
+                                <p class="text-xs text-gray-500">(Impara le 33 lettere russe)</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="unlocked-badge px-3 py-1 rounded-full text-sm font-bold"> Доступно</span>
+                            <span class="text-red-600 font-medium">25 минут</span>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-blue-200 rounded-xl p-6 hover:border-blue-400 transition-all cursor-pointer" onclick="startLesson(2)">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 rounded-full p-3 mr-4">
+                                <span class="text-2xl">👋</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg cyrillic-font">Приветствия</h3>
+                                <p class="text-sm text-blue-600 mb-1">(Saluti)</p>
+                                <p class="text-gray-600 text-sm cyrillic-font">Основные приветствия и вежливость</p>
+                                <p class="text-xs text-gray-500">(Saluti di base e cortesia)</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="unlocked-badge px-3 py-1 rounded-full text-sm font-bold"> Доступно</span>
+                            <span class="text-blue-600 font-medium">20 минут</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lessons Section -->
+        <div id="lessons-section" class="section hidden">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-4 text-center text-gray-800 cyrillic-font">📚 Уроки русского языка</h2>
+                <p class="text-center text-gray-500 mb-8">(Lezioni di Russo)</p>
+                
+                <div class="grid gap-6">
+                    <!-- Lesson 1 -->
+                    <div class="border-2 border-red-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(1)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">1</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Русский алфавит - L'Alfabeto Russo</h3>
+                                    <p class="text-gray-600 cyrillic-font">А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я</p>
+                                    <p class="text-sm text-gray-500">Le 33 lettere dell'alfabeto cirillico</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-red-600 font-medium">25 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 2 -->
+                    <div class="border-2 border-blue-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(2)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">2</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Приветствия - Saluti</h3>
+                                    <p class="text-gray-600 cyrillic-font">Привет, Здравствуйте, Спасибо, Пожалуйста</p>
+                                    <p class="text-sm text-gray-500">Saluti e espressioni di cortesia essenziali</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-blue-600 font-medium">20 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 3 -->
+                    <div class="border-2 border-green-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(3)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-green-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">3</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Числа - Numeri</h3>
+                                    <p class="text-gray-600 cyrillic-font">один, два, три, четыре, пять, шесть, семь, восемь, девять, десять</p>
+                                    <p class="text-sm text-gray-500">Numeri da 1 a 100 in russo</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-green-600 font-medium">30 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 4 -->
+                    <div class="border-2 border-purple-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(4)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-purple-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">4</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Цвета - Colori</h3>
+                                    <p class="text-gray-600 cyrillic-font">красный, синий, жёлтый, зелёный, чёрный, белый</p>
+                                    <p class="text-sm text-gray-500">Tutti i colori principali in russo</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-purple-600 font-medium">18 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 5 -->
+                    <div class="border-2 border-orange-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(5)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">5</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Семья - Famiglia</h3>
+                                    <p class="text-gray-600 cyrillic-font">мама, папа, брат, сестра, дедушка, бабушка, сын, дочь</p>
+                                    <p class="text-sm text-gray-500">Membri della famiglia e relazioni</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-orange-600 font-medium">25 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 6 -->
+                    <div class="border-2 border-teal-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(6)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-teal-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">6</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Еда - Cibo</h3>
+                                    <p class="text-gray-600 cyrillic-font">хлеб, молоко, мясо, рыба, овощи, фрукты, борщ</p>
+                                    <p class="text-sm text-gray-500">Cibi e bevande essenziali</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-teal-600 font-medium">22 минуты</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 7 -->
+                    <div class="border-2 border-indigo-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(7)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">7</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Время - Tempo</h3>
+                                    <p class="text-gray-600 cyrillic-font">сегодня, завтра, вчера, час, минута, неделя</p>
+                                    <p class="text-sm text-gray-500">Espressioni di tempo e calendario</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-indigo-600 font-medium">28 минут</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 8 -->
+                    <div class="border-2 border-pink-200 rounded-xl p-6 card-hover cursor-pointer" onclick="startLesson(8)">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-pink-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mr-4">8</div>
+                                <div>
+                                    <h3 class="text-xl font-bold cyrillic-font">Глаголы - Verbi</h3>
+                                    <p class="text-gray-600 cyrillic-font">идти, делать, быть, есть, пить, видеть, говорить</p>
+                                    <p class="text-sm text-gray-500">Verbi essenziali e uso base</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="unlocked-badge px-3 py-1 rounded-full text-sm mb-2 font-bold"> Доступно</div>
+                                <span class="text-pink-600 font-medium">35 минут</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exercises Section -->
+        <div id="exercises-section" class="section hidden">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-4 text-center text-gray-800 cyrillic-font">🎯 Интерактивные упражнения</h2>
+                <p class="text-center text-gray-500 mb-8">(Esercizi Interattivi)</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <div class="russian-bg rounded-xl p-6 card-hover cursor-pointer" onclick="startExercise('cyrillic')">
+                        <div class="text-4xl mb-4">📝</div>
+                        <h3 class="text-xl font-bold mb-2 cyrillic-font">Распознавание букв</h3>
+                        <p class="text-sm text-red-600 mb-2">(Riconoscimento Lettere)</p>
+                        <p class="text-gray-600 mb-4 cyrillic-font">Распознавание кириллических букв и значений</p>
+                        <p class="text-xs text-gray-500 mb-4">(Riconosci le lettere cirilliche e abbina i significati)</p>
+                        <div class="flex justify-between items-center">
+                            <span class="unlocked-badge px-3 py-1 rounded-full text-sm font-bold"> Доступно</span>
+                            <span class="text-red-600 font-medium">15 минут</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-blue-50 to-red-50 rounded-xl p-6 card-hover cursor-pointer" onclick="startExercise('pronunciation')">
+                        <div class="text-4xl mb-4">🎵</div>
+                        <h3 class="text-xl font-bold mb-2 cyrillic-font">Практика произношения</h3>
+                        <p class="text-sm text-blue-600 mb-2">(Pratica Pronuncia)</p>
+                        <p class="text-gray-600 mb-4 cyrillic-font">Практика произношения русских звуков</p>
+                        <p class="text-xs text-gray-500 mb-4">(Pratica la pronuncia dei suoni russi)</p>
+                        <div class="flex justify-between items-center">
+                            <span class="unlocked-badge px-3 py-1 rounded-full text-sm font-bold"> Доступно</span>
+                            <span class="text-blue-600 font-medium">20 минут</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Exercise -->
+                <div id="exercise-area" class="bg-gray-50 rounded-xl p-8">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-800 cyrillic-font">Упражнение: Распознавание слов</h3>
+                        <p class="text-sm text-gray-500 mb-6">(Esercizio: Riconoscimento Parole)</p>
+                        <div class="bg-white rounded-xl p-8 mb-6 shadow-inner">
+                            <div class="cyrillic-display mb-4 pulse-animation text-red-600 cyrillic-font" id="exercise-russian"></div>
+                            <div class="pronunciation-badge rounded-full px-4 py-2 mb-6 inline-block">
+                                <span class="font-bold text-amber-800" id="exercise-pronunciation"></span>
+                            </div>
+                            <p class="text-lg text-gray-600 mb-8 cyrillic-font">Что означает это русское слово?</p>
+                            <p class="text-sm text-gray-500 mb-8">(Cosa significa questa parola russa?)</p>
+                            
+                            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto" id="exercise-options-container">
+                                <!-- Options will be dynamically loaded here -->
+                            </div>
+                        </div>
+                        
+                        <div id="exercise-feedback" class="hidden">
+                            <!-- Feedback will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div id="progress-section" class="section hidden">
+            <div class="bg-white rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-4 text-center text-gray-800 cyrillic-font">📊 Прогресс обучения</h2>
+                <p class="text-center text-gray-500 mb-8">(Stato dei Progressi)</p>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-red-600 to-red-500 text-white rounded-2xl p-6">
+                            <div class="text-3xl font-bold">8</div>
+                            <div class="text-sm opacity-90 cyrillic-font">Завершённые уроки</div>
+                            <div class="text-xs opacity-75">(Lezioni Completate)</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-blue-500 to-red-500 text-white rounded-2xl p-6">
+                            <div class="text-3xl font-bold">200+</div>
+                            <div class="text-sm opacity-90 cyrillic-font">Изученные слова</div>
+                            <div class="text-xs opacity-75">(Parole Imparate)</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-purple-500 to-blue-500 text-white rounded-2xl p-6">
+                            <div class="text-3xl font-bold">∞</div>
+                            <div class="text-sm opacity-90 cyrillic-font">Безлимитный доступ</div>
+                            <div class="text-xs opacity-75">(Accesso Illimitato)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Alphabet Progress -->
+                    <div class="bg-gradient-to-br from-red-50 to-blue-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-2 text-red-700 cyrillic-font">Владение алфавитом</h3>
+                        <p class="text-sm text-red-600 mb-4">(Padronanza Alfabeto)</p>
+                        <div class="grid grid-cols-11 gap-1 mb-4 text-center">
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">А</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Б</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">В</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Г</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Д</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Е</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ё</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ж</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">З</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">И</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Й</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">К</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Л</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">М</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Н</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">О</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">П</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Р</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">С</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Т</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">У</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ф</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Х</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ц</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ч</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ш</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Щ</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ъ</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ы</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ь</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Э</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Ю</div>
+                            <div class="bg-red-100 border border-red-400 rounded p-1 text-xs cyrillic-font">Я</div>
+                        </div>
+                        <p class="text-sm text-gray-600 cyrillic-font">Все 33 буквы освоены!</p>
+                        <p class="text-xs text-gray-500">(Tutte le 33 lettere padroneggiate!)</p>
+                    </div>
+
+                    <!-- Vocabulary Progress -->
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-2 text-blue-700 cyrillic-font">Словарный запас</h3>
+                        <p class="text-sm text-blue-600 mb-4">(Vocabolario)</p>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm cyrillic-font">Приветствия</span>
+                                <div class="flex items-center">
+                                    <div class="bg-green-200 rounded-full h-2 w-16 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-xs text-green-600">15/15</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm cyrillic-font">Числа</span>
+                                <div class="flex items-center">
+                                    <div class="bg-green-200 rounded-full h-2 w-16 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-xs text-green-600">25/25</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm cyrillic-font">Цвета</span>
+                                <div class="flex items-center">
+                                    <div class="bg-green-200 rounded-full h-2 w-16 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-xs text-green-600">12/12</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm cyrillic-font">Семья</span>
+                                <div class="flex items-center">
+                                    <div class="bg-green-200 rounded-full h-2 w-16 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-xs text-green-600">18/18</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm cyrillic-font">Еда</span>
+                                <div class="flex items-center">
+                                    <div class="bg-green-200 rounded-full h-2 w-16 mr-2">
+                                        <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <span class="text-xs text-green-600">20/20</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-4 cyrillic-font">Итого: 200+ изученных слов!</p>
+                        <p class="text-xs text-gray-500">(Totale: 200+ parole imparate!)</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <div class="unlocked-badge rounded-full px-6 py-3 inline-block">
+                        <span class="font-bold text-lg cyrillic-font">🎉 Весь контент доступен! 🎉</span>
+                        <br>
+                        <span class="text-sm">(Tutto il contenuto è sbloccato!)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + '-section').classList.remove('hidden');
+            
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-red-600', 'text-white');
+                btn.classList.add('text-gray-600', 'hover:bg-red-100');
+            });
+            
+            // Find and update the clicked button
+            const clickedButton = Array.from(document.querySelectorAll('.nav-btn')).find(btn => 
+                btn.onclick && btn.onclick.toString().includes(sectionName)
+            );
+            
+            if (clickedButton) {
+                clickedButton.classList.add('bg-red-600', 'text-white');
+                clickedButton.classList.remove('text-gray-600', 'hover:bg-red-100');
+            }
+
+            // If navigating to exercises, reset and load the first exercise
+            if (sectionName === 'exercises') {
+                nextExercise();
+            }
+        }
+
+        // Lesson functions
+        function startLesson(lessonNumber) {
+            const lessons = {
+                1: {
+                    title: 'Русский алфавит (L\'Alfabeto Russo)',
+                    description: 'Кириллические буквы А-Я - Le lettere cirilliche A-Я',
+                    content: [
+                        {cyrillic: 'А', name: 'А', pronunciation: 'a', italian: 'A'},
+                        {cyrillic: 'Б', name: 'Бэ', pronunciation: 'b', italian: 'B'},
+                        {cyrillic: 'В', name: 'Вэ', pronunciation: 'v', italian: 'V'},
+                        {cyrillic: 'Г', name: 'Гэ', pronunciation: 'g', italian: 'G'},
+                        {cyrillic: 'Д', name: 'Дэ', pronunciation: 'd', italian: 'D'},
+                        {cyrillic: 'Е', name: 'Е', pronunciation: 'ye', italian: 'Ye'},
+                        {cyrillic: 'Ё', name: 'Ё', pronunciation: 'yo', italian: 'Yo'},
+                        {cyrillic: 'Ж', name: 'Жэ', pronunciation: 'zh', italian: 'Zh'},
+                        {cyrillic: 'З', name: 'Зэ', pronunciation: 'z', italian: 'Z'},
+                        {cyrillic: 'И', name: 'И', pronunciation: 'i', italian: 'I'},
+                        {cyrillic: 'Й', name: 'И краткое', pronunciation: 'y', italian: 'Y'},
+                        {cyrillic: 'К', name: 'Ка', pronunciation: 'k', italian: 'K'},
+                        {cyrillic: 'Л', name: 'Эль', pronunciation: 'l', italian: 'L'},
+                        {cyrillic: 'М', name: 'Эм', pronunciation: 'm', italian: 'M'},
+                        {cyrillic: 'Н', name: 'Эн', pronunciation: 'n', italian: 'N'},
+                        {cyrillic: 'О', name: 'О', pronunciation: 'o', italian: 'O'},
+                        {cyrillic: 'П', name: 'Пэ', pronunciation: 'p', italian: 'P'},
+                        {cyrillic: 'Р', name: 'Эр', pronunciation: 'r', italian: 'R'},
+                        {cyrillic: 'С', name: 'Эс', pronunciation: 's', italian: 'S'},
+                        {cyrillic: 'Т', name: 'Тэ', pronunciation: 't', italian: 'T'},
+                        {cyrillic: 'У', name: 'У', pronunciation: 'u', italian: 'U'},
+                        {cyrillic: 'Ф', name: 'Эф', pronunciation: 'f', italian: 'F'},
+                        {cyrillic: 'Х', name: 'Ха', pronunciation: 'kh', italian: 'Kh'},
+                        {cyrillic: 'Ц', name: 'Цэ', pronunciation: 'ts', italian: 'Ts'},
+                        {cyrillic: 'Ч', name: 'Че', pronunciation: 'ch', italian: 'Ch'},
+                        {cyrillic: 'Ш', name: 'Ша', pronunciation: 'sh', italian: 'Sh'},
+                        {cyrillic: 'Щ', name: 'Ща', pronunciation: 'shch', italian: 'Shch'},
+                        {cyrillic: 'Ъ', name: 'Твёрдый знак', pronunciation: '(segno duro)', italian: 'Segno duro'},
+                        {cyrillic: 'Ы', name: 'Ы', pronunciation: 'y', italian: 'Y'},
+                        {cyrillic: 'Ь', name: 'Мягкий знак', pronunciation: '(segno molle)', italian: 'Segno molle'},
+                        {cyrillic: 'Э', name: 'Э', pronunciation: 'e', italian: 'E'},
+                        {cyrillic: 'Ю', name: 'Ю', pronunciation: 'yu', italian: 'Yu'},
+                        {cyrillic: 'Я', name: 'Я', pronunciation: 'ya', italian: 'Ya'}
+                    ]
+                },
+                2: {
+                    title: 'Приветствия (Saluti)',
+                    description: 'Основные приветствия и вежливость - Saluti di base e espressioni di cortesia',
+                    content: [
+                        {cyrillic: 'Привет', pronunciation: 'privet', italian: 'Ciao (informale)'},
+                        {cyrillic: 'Здравствуйте', pronunciation: 'zdravstvuyte', italian: 'Buongiorno (formale)'},
+                        {cyrillic: 'Добро пожаловать', pronunciation: 'dobro pozhalovat\'', italian: 'Benvenuto'},
+                        {cyrillic: 'Доброе утро', pronunciation: 'dobroye utro', italian: 'Buongiorno'},
+                        {cyrillic: 'Добрый день', pronunciation: 'dobryy den\'', italian: 'Buon pomeriggio'},
+                        {cyrillic: 'Добрый вечер', pronunciation: 'dobryy vecher', italian: 'Buonasera'},
+                        {cyrillic: 'Спокойной ночи', pronunciation: 'spokoynoy nochi', italian: 'Buonanotte'},
+                        {cyrillic: 'Спасибо', pronunciation: 'spasibo', italian: 'Grazie'},
+                        {cyrillic: 'Большое спасибо', pronunciation: 'bol\'shoye spasibo', italian: 'Grazie mille'},
+                        {cyrillic: 'Пожалуйста', pronunciation: 'pozhaluysta', italian: 'Prego'},
+                        {cyrillic: 'Извините', pronunciation: 'izvinite', italian: 'Mi scusi'},
+                        {cyrillic: 'Простите', pronunciation: 'prostite', italian: 'Mi perdoni'},
+                        {cyrillic: 'До свидания', pronunciation: 'do svidaniya', italian: 'Arrivederci'},
+                        {cyrillic: 'Пока', pronunciation: 'poka', italian: 'Ciao (addio)'},
+                        {cyrillic: 'Увидимся', pronunciation: 'uvidimsya', italian: 'Ci vediamo'}
+                    ]
+                },
+                3: {
+                    title: 'Числа (Numeri)',
+                    description: 'Русские числа 1-100 - Numeri russi 1-100',
+                    content: [
+                        {cyrillic: 'один', pronunciation: 'odin', italian: 'Uno', number: '1'},
+                        {cyrillic: 'два', pronunciation: 'dva', italian: 'Due', number: '2'},
+                        {cyrillic: 'три', pronunciation: 'tri', italian: 'Tre', number: '3'},
+                        {cyrillic: 'четыре', pronunciation: 'chetyre', italian: 'Quattro', number: '4'},
+                        {cyrillic: 'пять', pronunciation: 'pyat\'', italian: 'Cinque', number: '5'},
+                        {cyrillic: 'шесть', pronunciation: 'shest\'', italian: 'Sei', number: '6'},
+                        {cyrillic: 'семь', pronunciation: 'sem\'', italian: 'Sette', number: '7'},
+                        {cyrillic: 'восемь', pronunciation: 'vosem\'', italian: 'Otto', number: '8'},
+                        {cyrillic: 'девять', pronunciation: 'devyat\'', italian: 'Nove', number: '9'},
+                        {cyrillic: 'десять', pronunciation: 'desyat\'', italian: 'Dieci', number: '10'},
+                        {cyrillic: 'двадцать', pronunciation: 'dvadtsat\'', italian: 'Venti', number: '20'},
+                        {cyrillic: 'тридцать', pronunciation: 'tridtsat\'', italian: 'Trenta', number: '30'},
+                        {cyrillic: 'пятьдесят', pronunciation: 'pyat\'desyat', italian: 'Cinquanta', number: '50'},
+                        {cyrillic: 'сто', pronunciation: 'sto', italian: 'Cento', number: '100'}
+                    ]
+                },
+                4: {
+                    title: 'Цвета (Colori)',
+                    description: 'Основные цвета по-русски - Colori di base in russo',
+                    content: [
+                        {cyrillic: 'красный', pronunciation: 'krasnyy', italian: 'Rosso', color: '#dc2626'},
+                        {cyrillic: 'синий', pronunciation: 'siniy', italian: 'Blu', color: '#2563eb'},
+                        {cyrillic: 'жёлтый', pronunciation: 'zhyoltyy', italian: 'Giallo', color: '#eab308'},
+                        {cyrillic: 'зелёный', pronunciation: 'zelyonyy', italian: 'Verde', color: '#16a34a'},
+                        {cyrillic: 'чёрный', pronunciation: 'chyornyy', italian: 'Nero', color: '#000000'},
+                        {cyrillic: 'белый', pronunciation: 'belyy', italian: 'Bianco', color: '#ffffff'},
+                        {cyrillic: 'розовый', pronunciation: 'rozovyy', italian: 'Rosa', color: '#ec4899'},
+                        {cyrillic: 'фиолетовый', pronunciation: 'fioletovyy', italian: 'Viola', color: '#9333ea'},
+                        {cyrillic: 'оранжевый', pronunciation: 'oranzhevyy', italian: 'Arancione', color: '#ea580c'},
+                        {cyrillic: 'коричневый', pronunciation: 'korichnevyy', italian: 'Marrone', color: '#92400e'},
+                        {cyrillic: 'серый', pronunciation: 'seryy', italian: 'Grigio', color: '#6b7280'}
+                    ]
+                },
+                5: {
+                    title: 'Семья (Famiglia)',
+                    description: 'Члены семьи - Membri della famiglia',
+                    content: [
+                        {cyrillic: 'мама', pronunciation: 'mama', italian: 'Mamma'},
+                        {cyrillic: 'папа', pronunciation: 'papa', italian: 'Papà'},
+                        {cyrillic: 'брат', pronunciation: 'brat', italian: 'Fratello'},
+                        {cyrillic: 'сестра', pronunciation: 'sestra', italian: 'Sorella'},
+                        {cyrillic: 'дедушка', pronunciation: 'dedushka', italian: 'Nonno'},
+                        {cyrillic: 'бабушка', pronunciation: 'babushka', italian: 'Nonna'},
+                        {cyrillic: 'сын', pronunciation: 'syn', italian: 'Figlio'},
+                        {cyrillic: 'дочь', pronunciation: 'doch\'', italian: 'Figlia'},
+                        {cyrillic: 'дядя', pronunciation: 'dyadya', italian: 'Zio'},
+                        {cyrillic: 'тётя', pronunciation: 'tyotya', italian: 'Zia'},
+                        {cyrillic: 'муж', pronunciation: 'muzh', italian: 'Marito'},
+                        {cyrillic: 'жена', pronunciation: 'zhena', italian: 'Moglie'},
+                        {cyrillic: 'родители', pronunciation: 'roditeli', italian: 'Genitori'},
+                        {cyrillic: 'дети', pronunciation: 'deti', italian: 'Bambini'},
+                        {cyrillic: 'семья', pronunciation: 'sem\'ya', italian: 'Famiglia'}
+                    ]
+                },
+                6: {
+                    title: 'Еда (Cibo)',
+                    description: 'Основная еда и напитки - Cibi e bevande di base',
+                    content: [
+                        {cyrillic: 'хлеб', pronunciation: 'khleb', italian: 'Pane'},
+                        {cyrillic: 'молоко', pronunciation: 'moloko', italian: 'Latte'},
+                        {cyrillic: 'вода', pronunciation: 'voda', italian: 'Acqua'},
+                        {cyrillic: 'чай', pronunciation: 'chay', italian: 'Tè'},
+                        {cyrillic: 'кофе', pronunciation: 'kofe', italian: 'Caffè'},
+                        {cyrillic: 'мясо', pronunciation: 'myaso', italian: 'Carne'},
+                        {cyrillic: 'рыба', pronunciation: 'ryba', italian: 'Pesce'},
+                        {cyrillic: 'курица', pronunciation: 'kuritsa', italian: 'Pollo'},
+                        {cyrillic: 'овощи', pronunciation: 'ovoshchi', italian: 'Verdure'},
+                        {cyrillic: 'фрукты', pronunciation: 'frukty', italian: 'Frutta'},
+                        {cyrillic: 'яблоко', pronunciation: 'yabloko', italian: 'Mela'},
+                        {cyrillic: 'банан', pronunciation: 'banan', italian: 'Banana'},
+                        {cyrillic: 'борщ', pronunciation: 'borshch', italian: 'Borsch'},
+                        {cyrillic: 'водка', pronunciation: 'vodka', italian: 'Vodka'}
+                    ]
+                },
+                7: {
+                    title: 'Время (Tempo)',
+                    description: 'Выражения времени - Espressioni di tempo',
+                    content: [
+                        {cyrillic: 'сегодня', pronunciation: 'segodnya', italian: 'Oggi'},
+                        {cyrillic: 'завтра', pronunciation: 'zavtra', italian: 'Domani'},
+                        {cyrillic: 'вчера', pronunciation: 'vchera', italian: 'Ieri'},
+                        {cyrillic: 'сейчас', pronunciation: 'seychas', italian: 'Adesso'},
+                        {cyrillic: 'потом', pronunciation: 'potom', italian: 'Dopo'},
+                        {cyrillic: 'раньше', pronunciation: 'ran\'she', italian: 'Prima'},
+                        {cyrillic: 'час', pronunciation: 'chas', italian: 'Ora'},
+                        {cyrillic: 'минута', pronunciation: 'minuta', italian: 'Minuto'},
+                        {cyrillic: 'секунда', pronunciation: 'sekunda', italian: 'Secondo'},
+                        {cyrillic: 'неделя', pronunciation: 'nedelya', italian: 'Settimana'},
+                        {cyrillic: 'месяц', pronunciation: 'mesyats', italian: 'Mese'},
+                        {cyrillic: 'год', pronunciation: 'god', italian: 'Anno'},
+                        {cyrillic: 'утро', pronunciation: 'utro', italian: 'Mattina'},
+                        {cyrillic: 'день', pronunciation: 'den\'', italian: 'Giorno'},
+                        {cyrillic: 'вечер', pronunciation: 'vecher', italian: 'Sera'},
+                        {cyrillic: 'ночь', pronunciation: 'noch\'', italian: 'Notte'}
+                    ]
+                },
+                8: {
+                    title: 'Глаголы (Verbi)',
+                    description: 'Основные глаголы - Verbi essenziali',
+                    content: [
+                        {cyrillic: 'идти', pronunciation: 'idti', italian: 'Andare'},
+                        {cyrillic: 'приходить', pronunciation: 'prikhodit\'', italian: 'Venire'},
+                        {cyrillic: 'делать', pronunciation: 'delat\'', italian: 'Fare'},
+                        {cyrillic: 'быть', pronunciation: 'byt\'', italian: 'Essere'},
+                        {cyrillic: 'иметь', pronunciation: 'imet\'', italian: 'Avere'},
+                        {cyrillic: 'есть', pronunciation: 'yest\'', italian: 'Mangiare'},
+                        {cyrillic: 'пить', pronunciation: 'pit\'', italian: 'Bere'},
+                        {cyrillic: 'видеть', pronunciation: 'videt\'', italian: 'Vedere'},
+                        {cyrillic: 'слышать', pronunciation: 'slyshat\'', italian: 'Sentire'},
+                        {cyrillic: 'говорить', pronunciation: 'govorit\'', italian: 'Parlare'},
+                        {cyrillic: 'читать', pronunciation: 'chitat\'', italian: 'Leggere'},
+                        {cyrillic: 'писать', pronunciation: 'pisat\'', italian: 'Scrivere'},
+                        {cyrillic: 'изучать', pronunciation: 'izuchat\'', italian: 'Studiare'},
+                        {cyrillic: 'работать', pronunciation: 'rabotat\'', italian: 'Lavorare'},
+                        {cyrillic: 'спать', pronunciation: 'spat\'', italian: 'Dormire'},
+                        {cyrillic: 'покупать', pronunciation: 'pokupat\'', italian: 'Comprare'}
+                    ]
+                }
+            };
+
+            const lesson = lessons[lessonNumber];
+            if (lesson) {
+                showLessonContent(lesson.title, lesson.description, lesson.content, lessonNumber);
+            } else {
+                showInfoModal(`🎉 Поздравляем! Урок ${lessonNumber} доступен и открыт!`);
+            }
+        }
+
+        function showLessonContent(title, description, content, lessonNumber) {
+            // Create lesson modal
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            
+            let contentHTML = '';
+            if (lessonNumber === 1) {
+                // Alphabet layout
+                contentHTML = content.map(item => `
+                    <div class="bg-gradient-to-br from-red-50 to-blue-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-4xl font-bold mb-2 text-red-600 cyrillic-font">${item.cyrillic}</div>
+                        <div class="text-lg font-bold mb-2 cyrillic-font">${item.name}</div>
+                        <div class="pronunciation-badge rounded-full px-3 py-1 mb-3 inline-block">
+                            <span class="font-bold text-amber-800">${item.pronunciation}</span>
+                        </div>
+                        <div class="text-gray-600 text-sm">${item.italian}</div>
+                    </div>
+                `).join('');
+            } else if (lessonNumber === 4) {
+                // Colors layout
+                contentHTML = content.map(item => `
+                    <div class="bg-gradient-to-br from-red-50 to-blue-50 rounded-xl p-6 text-center card-hover">
+                        <div class="w-16 h-16 rounded-full mx-auto mb-3 border-4 border-white shadow-lg" style="background-color: ${item.color}"></div>
+                        <div class="text-xl font-bold mb-2 text-red-600 cyrillic-font">${item.cyrillic}</div>
+                        <div class="pronunciation-badge rounded-full px-3 py-1 mb-2 inline-block">
+                            <span class="font-bold text-amber-800">${item.pronunciation}</span>
+                        </div>
+                        <div class="text-gray-600 text-sm">${item.italian}</div>
+                    </div>
+                `).join('');
+            } else if (lessonNumber === 3) {
+                // Numbers layout
+                contentHTML = content.map(item => `
+                    <div class="bg-gradient-to-br from-red-50 to-blue-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-3xl font-bold mb-2 text-red-600">${item.number}</div>
+                        <div class="text-xl font-bold mb-2 cyrillic-font">${item.cyrillic}</div>
+                        <div class="pronunciation-badge rounded-full px-3 py-1 mb-2 inline-block">
+                            <span class="font-bold text-amber-800">${item.pronunciation}</span>
+                        </div>
+                        <div class="text-gray-600 text-sm">${item.italian}</div>
+                    </div>
+                `).join('');
+            } else {
+                // Standard layout for other lessons
+                contentHTML = content.map(item => `
+                    <div class="bg-gradient-to-br from-red-50 to-blue-50 rounded-xl p-6 text-center card-hover">
+                        <div class="text-2xl font-bold mb-2 text-red-600 cyrillic-font">${item.cyrillic}</div>
+                        <div class="pronunciation-badge rounded-full px-3 py-1 mb-3 inline-block">
+                            <span class="font-bold text-amber-800">${item.pronunciation}</span>
+                        </div>
+                        <div class="text-gray-600 text-sm">${item.italian}</div>
+                    </div>
+                `).join('');
+            }
+
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-6xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-gray-800 cyrillic-font">${title}</h2>
+                        <button onclick="closeLessonModal()" class="text-gray-500 hover:text-gray-700 text-2xl">✕</button>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-8">${description}</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
+                        ${contentHTML}
+                    </div>
+                    
+                    <div class="flex gap-4 justify-center">
+                        <button onclick="startLessonQuiz('${title}')" class="bg-gradient-to-r from-red-600 to-blue-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all">
+                            🎯 Тест (Fai il Test)
+                        </button>
+                        <button onclick="closeLessonModal()" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-xl font-medium hover:bg-gray-300 transition-all">
+                            ✓ Завершено (Completato)
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function closeLessonModal() {
+            const modal = document.querySelector('.fixed.inset-0');
+            if (modal) {
+                modal.remove();
+            }
+        }
+
+        function startLessonQuiz(lessonTitle) {
+            closeLessonModal();
+            showSection('exercises');
+            showInfoModal(`🎯 Отлично! Давайте попробуем тест ${lessonTitle}. Перейдите в раздел упражнений, чтобы проверить то, что вы изучили!`);
+        }
+
+        // Custom Info Modal instead of alert
+        function showInfoModal(message) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-2xl p-8 max-w-sm w-full text-center">
+                    <p class="text-lg text-gray-800 mb-6">${message}</p>
+                    <button onclick="this.closest('.fixed.inset-0').remove()" class="bg-red-600 text-white px-6 py-3 rounded-xl font-medium hover:bg-red-700 transition-all">
+                        OK
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Exercise functions
+        let currentExercise = {
+            allWords: [
+                {cyrillic: 'Привет', correct: 'Ciao', pronunciation: 'privet'},
+                {cyrillic: 'Спасибо', correct: 'Grazie', pronunciation: 'spasibo'},
+                {cyrillic: 'вода', correct: 'Acqua', pronunciation: 'voda'},
+                {cyrillic: 'хлеб', correct: 'Pane', pronunciation: 'khleb'},
+                {cyrillic: 'мама', correct: 'Mamma', pronunciation: 'mama'},
+                {cyrillic: 'папа', correct: 'Papà', pronunciation: 'papa'},
+                {cyrillic: 'красный', correct: 'Rosso', pronunciation: 'krasnyy'},
+                {cyrillic: 'синий', correct: 'Blu', pronunciation: 'siniy'},
+                {cyrillic: 'один', correct: 'Uno', pronunciation: 'odin'},
+                {cyrillic: 'два', correct: 'Due', pronunciation: 'dva'},
+                {cyrillic: 'год', correct: 'Anno', pronunciation: 'god'},
+                {cyrillic: 'идти', correct: 'Andare', pronunciation: 'idti'},
+                {cyrillic: 'есть', correct: 'Mangiare', pronunciation: 'yest\''}
+            ],
+            currentIndex: 0,
+            currentQuestionWord: null,
+            correctAnswerItalian: ''
+        };
+
+        // Utility function to shuffle an array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startExercise(type) {
+            if (type === 'cyrillic') {
+                document.getElementById('exercises-section').scrollIntoView({behavior: 'smooth'});
+                document.getElementById('exercise-area').scrollIntoView({behavior: 'smooth'});
+                nextExercise(); // Start the first exercise question
+            } else {
+                showInfoModal(`🎵 Упражнение на произношение! В реальном приложении вы можете использовать микрофон для практики произношения русских звуков.`);
+            }
+        }
+
+        function checkAnswer(selectedAnswer) {
+            const feedback = document.getElementById('exercise-feedback');
+            const word = currentExercise.currentQuestionWord;
+            
+            // Clear previous feedback classes
+            feedback.classList.remove('bg-green-100', 'border-green-400', 'text-green-700', 'bg-orange-100', 'border-orange-400', 'text-orange-700');
+
+            if (selectedAnswer === currentExercise.correctAnswerItalian) {
+                feedback.innerHTML = `
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-4 bounce-in">
+                        <strong>Правильно! 🎉</strong> "${word.cyrillic}" significa "${word.correct}" in italiano.
+                        <br><span class="text-sm">(Corretto! "${word.cyrillic}" vuol dire "${word.correct}")</span>
+                    </div>
+                    <button onclick="nextExercise()" class="bg-gradient-to-r from-red-500 to-blue-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all">
+                        Следующий вопрос → (Prossima Domanda)
+                    </button>
+                `;
+            } else {
+                feedback.innerHTML = `
+                    <div class="bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded-xl mb-4 bounce-in">
+                        <strong>Попробуйте ещё раз! 🤔</strong> "${word.cyrillic}" non significa "${selectedAnswer}". La risposta corretta era "${currentExercise.correctAnswerItalian}".
+                        <br><span class="text-sm">(Riprova! "${word.cyrillic}" non vuol dire "${selectedAnswer}". La risposta corretta era "${currentExercise.correctAnswerItalian}")</span>
+                    </div>
+                    <button onclick="nextExercise()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all">
+                        Следующий вопрос → (Prossima Domanda)
+                    </button>
+                `;
+            }
+            
+            feedback.classList.remove('hidden');
+            
+            // Disable option buttons
+            document.querySelectorAll('#exercise-options-container button').forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('opacity-50');
+            });
+        }
+
+        function nextExercise() {
+            // Move to the next word, loop back to start if at the end
+            currentExercise.currentIndex = (currentExercise.currentIndex + 1) % currentExercise.allWords.length;
+            const currentQuestionData = currentExercise.allWords[currentExercise.currentIndex];
+            
+            currentExercise.currentQuestionWord = currentQuestionData;
+            currentExercise.correctAnswerItalian = currentQuestionData.correct;
+
+            // Update displayed Russian word and pronunciation
+            document.getElementById('exercise-russian').textContent = currentQuestionData.cyrillic;
+            document.getElementById('exercise-pronunciation').textContent = currentQuestionData.pronunciation;
+
+            // Generate options
+            let options = [currentQuestionData.correct]; // Start with the correct answer
+            
+            // Filter out the correct answer and get remaining Italian translations
+            const incorrectOptionsPool = currentExercise.allWords
+                                        .filter(w => w.correct !== currentQuestionData.correct)
+                                        .map(w => w.correct);
+
+            // Select 3 random unique incorrect options
+            shuffleArray(incorrectOptionsPool); // Shuffle the pool to pick random ones
+            for (let i = 0; options.length < 4 && i < incorrectOptionsPool.length; i++) {
+                if (!options.includes(incorrectOptionsPool[i])) { // Ensure uniqueness
+                    options.push(incorrectOptionsPool[i]);
+                }
+            }
+            
+            // Shuffle the final options
+            shuffleArray(options);
+
+            // Populate buttons
+            const optionsContainer = document.getElementById('exercise-options-container');
+            optionsContainer.innerHTML = ''; // Clear previous options
+
+            const buttonColors = ['bg-red-100 text-red-800', 'bg-blue-100 text-blue-800', 'bg-green-100 text-green-800', 'bg-purple-100 text-purple-800'];
+
+            options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = `exercise-option ${buttonColors[index % buttonColors.length]} py-4 px-6 rounded-xl font-medium transition-all hover:bg-opacity-80`;
+                button.setAttribute('onclick', `checkAnswer('${option}')`);
+                button.textContent = option;
+                optionsContainer.appendChild(button);
+            });
+
+            // Hide feedback and re-enable option buttons
+            document.getElementById('exercise-feedback').classList.add('hidden');
+            document.querySelectorAll('#exercise-options-container button').forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('opacity-50');
+            });
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial section to home
+            showSection('home');
+
+            // Add some interactive animations (unchanged from original)
+            setInterval(() => {
+                const progressBar = document.getElementById('progress-bar');
+                const currentWidth = parseFloat(progressBar.style.width); // Use parseFloat for more precision
+                if (currentWidth < 100) {
+                    const newWidth = Math.min(currentWidth + Math.random() * 2, 100);
+                    progressBar.style.width = newWidth + '%';
+                    document.getElementById('progress-percent').textContent = Math.round(newWidth) + '%';
+                }
+            }, 9000);
+        });
+    </script>
+</body>
+</html>
